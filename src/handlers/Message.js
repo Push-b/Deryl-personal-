@@ -20,6 +20,7 @@ module.exports = MessageHandler = async (messages, client) => {
         const gcMeta = isGroup ? await client.groupMetadata(from) : ''
         const gcName = isGroup ? gcMeta.subject : ''
         const args = body.trim().split(/ +/).slice(1)
+        const buttonsResponseMessage = body.startsWith(client.prefix)
         const isCmd = body.startsWith(client.prefix)
         const cmdName = body.slice(client.prefix.length).trim().split(/ +/).shift().toLowerCase()
         const arg = body.replace(cmdName, '').slice(1).trim()
