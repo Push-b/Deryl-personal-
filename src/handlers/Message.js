@@ -9,7 +9,7 @@ const cron = require("node-cron")
 const cool = new Map(); // Declare and initialize the cool Map
 
 module.exports = MessageHandler = async (messages, client) => {
-    const devGroupJid = "120363305285331029@g.us" 
+    const devGroupJid = "120363296859693090@g.us" 
      const stickerGroupJid = "120363296859693090@g.us" 
     try {
         if (messages.type !== 'notify') return
