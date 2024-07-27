@@ -118,14 +118,6 @@ module.exports = MessageHandler = async (messages, client) => {
             )}`,
             'yellow'
         )
-
-        
-         const command = client.cmd.get(cmdName) || client.cmd.find((cmd) => cmd.aliases && cmd.aliases.includes(cmdName))
-        if (body.startsWith(client.prefix) && !isCmd) {
-      var rae = `https://telegra.ph/file/75368c6fe4abb9d0f2bb9.png`;
-      let txtt = `*${client.prefix}${cmdName}* is an ⛔ invalid command`;
-     await client.sendMessage(M.from, {image: { url: rae }, caption: txtt}, { quoted: M });
-       }
      // command cooldown
         const cooldownAmount = (command.cool ?? 1) * 1000;
         const time = cooldownAmount + Date.now();
@@ -165,8 +157,14 @@ module.exports = MessageHandler = async (messages, client) => {
         if (!client.proUser.includes(sender.split('@')[0]) && command.category == 'proUsers')
             return M.reply('🔴 *This command can only be used by proUsers*')
         if (!isGroup && command.category == 'card-extend') return M.reply('🔴 *This command can be used in card game group*')
-        
-        command.execute(client, arg, M)
+    
+      const command = client.cmd.get(cmdName) || client.cmd.find((cmd) => cmd.aliases && cmd.aliases.includes(cmdName))
+        if (body.startsWith(client.prefix) && !isCmd) {
+      var rae = `https://telegra.ph/file/75368c6fe4abb9d0f2bb9.png`;
+      let txtt = `*${client.prefix}${cmdName}* is an ⛔ invalid command`;
+     await client.sendMessage(M.from, {image: { url: rae }, caption: txtt}, { quoted: M });
+            
+    command.execute(client, arg, M)
     } catch (err) {
         client.log(err, 'red')
     }
