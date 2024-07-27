@@ -97,14 +97,14 @@ if (hour >= 0 && hour < 12) {
                     .locale('id')
                 const date = moment.tz('Asia/Kolkata').format('DD/MM/YYYY')
 
- let message = `*╭─────────────╮*
- *│ ⋊ ɴᴀᴍᴇ: Kurumi Tokisaki*
- *│ ⋊ ᴜsᴇʀ:* @${pushName}*
- *│ ⋊ ᴘʀᴇғɪx: << ${client.prefix} >>*
- *│ ⋊ Time: ${time}*
- *│ ⋊ Date: ${date}*
- *│ ⋊ ᴏᴡɴᴇʀ: ${client.owner}* 
- *╰─────────────╯*\n\n${commands}`;
+ let message = `*╭──────────────╮*
+*│ ⋊ ɴᴀᴍᴇ: Kurumi Tokisaki*
+*│ ⋊ ᴜsᴇʀ:* @${pushName}
+*│ ⋊ ᴘʀᴇғɪx: << ${client.prefix} >>*
+*│ ⋊ Time: ${time}*
+*│ ⋊ Date: ${date}*
+*│ ⋊ ᴏᴡɴᴇʀ: ${client.owner}* 
+*╰──────────────╯*\n\n${commands}`;
    
       const buffer = await client.utils.getBuffer('https://i.imgur.com/ZgrSw7W.jpg')
       await client.sendMessage(
