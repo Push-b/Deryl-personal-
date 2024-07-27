@@ -1,0 +1,62 @@
+module.exports = EventsHandler = async (event, client) => {
+    const activateEvents = (await client.DB.get('events')) || [];
+    const groupMetadata = await client.groupMetadata(event.id);
+    if (!activateEvents.includes(event.id)) return;
+
+    const getRandomMessage = (action, participants) => {
+        const randomMessages = {
+            add: [
+                '{user} here is a warm welcome to our support group glad you decided to join us!',
+                '{user} welcome to our group designed to share helpful stuff!',
+                '{user} hey there !',
+                '{user} has arrived!',
+                'Welcome to the group, {user}. Hope you follow the description rules.',
+                "{user} has arrived. we are proud to have you in our group!",
+                '{user} we are pleased that you considered our group link!',
+                "Well, {user}, it's about time you arrived!",
+                'Um, {user} has arrived. and we expect unconditional love from you!?',
+                'Very funny {user}, I expected you to be here a while what took you so long?',
+                'Good to see you, {user}. just know you are welcome ',
+                "It's a pleasure to see you {user}.",
+            ],
+            remove: [
+                '{user} has left the party.',
+                '{user} has left the group.',
+                '{user} has left the group. I hope you enjoyed your stay.',
+                "Well {user}, it's about time you left.",
+                'Bye bye {user}.',
+                "It's been nice meeting you {user}.",
+                'Take care {user}.',
+                'Later {user}.',
+                'Catch you later {user}.',
+                'Till next time {user}.',
+                'We will meet again {user}.',
+            ],
+            demote: [
+                "{user}, you're fired from the admin position!",
+                "lol Adminship isn't for you {user}. maybe next time",
+                "{user} you had a good run, but you're no longer an admin.",
+                "Well, I don't know how to tell you this, but {user} you have been demoted in admin community.",
+                '{user} has been demoted. I hope you enjoyed your admin run.',
+            ],
+            promote: [
+                "{user}, you're now an admin. hope you take good care of us!",
+                "Welcome {user}, you're now an admin. lets have a cold beer!",
+                "Well, you're an admin now {user}. happy now ??",
+                "Looks like you're an admin now {user}.",
+            ],
+        };
+
+        const messages = randomMessages[action] || [];
+        const randomIndex = Math.floor(Math.random() * messages.length);
+        return messages[randomIndex].replace('{user}', `@${participants[0].split('@')[0]}`) || '';
+    };
+
+    const text = getRandomMessage(event.action, event.participants);
+
+    client.sendMessage(event.id, {
+        text,
+        mentions: event.participants,
+    });
+};
+                
