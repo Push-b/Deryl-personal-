@@ -3,6 +3,7 @@ module.exports = {
     aliases: ['h', 'menu', 'list'],
     category: 'general',
     react: "🏹",
+    cool: 20,
     description: 'Displays the command list or specific command info',
     async execute(client, arg, M) {
 
