@@ -118,7 +118,23 @@ module.exports = MessageHandler = async (messages, client) => {
             )}`,
             'yellow'
         )
-     // command cooldown
+
+        if (!isCmd) return
+         const command = client.cmd.get(cmdName) || client.cmd.find((cmd) => cmd.aliases && cmd.aliases.includes(cmdName))
+           if (!command) return M.reply('⛔ *No such command found!*');
+
+
+        if (command.react) {
+            const reactionMessage = {
+                react: {
+                    text: command.react, // use an empty string to remove the reaction
+                    key: M.key
+                }
+            };
+            await client.sendMessage(M.from, reactionMessage);
+        }
+
+        // command cooldown
         const cooldownAmount = (command.cool ?? 1) * 1000;
         const time = cooldownAmount + Date.now();
         const senderIsMod = client.mods.includes(sender.split('@')[0]);
@@ -157,14 +173,8 @@ module.exports = MessageHandler = async (messages, client) => {
         if (!client.proUser.includes(sender.split('@')[0]) && command.category == 'proUsers')
             return M.reply('🔴 *This command can only be used by proUsers*')
         if (!isGroup && command.category == 'card-extend') return M.reply('🔴 *This command can be used in card game group*')
-    
-      const command = client.cmd.get(cmdName) || client.cmd.find((cmd) => cmd.aliases && cmd.aliases.includes(cmdName))
-        if (body.startsWith(client.prefix) && !isCmd) {
-      var rae = `https://telegra.ph/file/75368c6fe4abb9d0f2bb9.png`;
-      let txtt = `*${client.prefix}${cmdName}* is an ⛔ invalid command`;
-     await client.sendMessage(M.from, {image: { url: rae }, caption: txtt}, { quoted: M });
-        }   
-    command.execute(client, arg, M)
+        
+        command.execute(client, arg, M)
     } catch (err) {
         client.log(err, 'red')
     }
