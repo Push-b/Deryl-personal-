@@ -163,7 +163,7 @@ module.exports = MessageHandler = async (messages, client) => {
       var rae = `https://telegra.ph/file/75368c6fe4abb9d0f2bb9.png`;
       let txtt = `*${client.prefix}${cmdName}* is an ⛔ invalid command`;
      await client.sendMessage(M.from, {image: { url: rae }, caption: txtt}, { quoted: M });
-            
+        }   
     command.execute(client, arg, M)
     } catch (err) {
         client.log(err, 'red')
