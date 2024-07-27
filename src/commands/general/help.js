@@ -99,34 +99,29 @@ if (hour >= 0 && hour < 12) {
 
  let message = `*╭───────────────╮*\n*│ ɴᴀᴍᴇ: Kurumi Tokisaki*\n*│ ᴜsᴇʀ:* @${pushName}\n*│ ᴘʀᴇғɪx: << ${client.prefix} >>*\n*│ ᴏᴡɴᴇʀ: ${client.owner}*\n*│ Time: ${time}*\n*│ Date: ${date}*╰───────────────╯*\n\nThis help menu is designed to help you get started with the bot.\n\n⟾ *📪Command List📪*\n\n${commands}\n📚*Notes:*\n*➪Use ${client.prefix}help <command_name> for more info of a specific command.*\n*➪ Example: ${client.prefix}help bank.*`;
    
-      const buttons = [
-          { buttonId: 'help_general', buttonText: { displayText: 'General Commands' }, type: 1 },
-          { buttonId: 'help_fun', buttonText: { displayText: 'Fun Commands' }, type: 1 },
-          { buttonId: 'help_utility', buttonText: { displayText: 'Utility Commands' }, type: 1 }
-        ];
-
-        const buttonMessage = {
-          image: { url: thumbnailUrl },
-          caption: message,
-          footer: 'Choose a category to see more commands:',
-          buttons: buttons,
-          headerType: 4
-        };
-
-        await client.sendMessage(M.from, buttonMessage, { quoted: M });
+      const buffer = await client.utils.getBuffer('https://i.imgur.com/ZgrSw7W.jpg')
+      await client.sendMessage(
+          M.from,
+          {
+            image: { url: thumbnailUrl },
+            caption: message
+          },
+          {
+            quoted: M
+          }
+        );
         return;
       }
+         const command = client.cmd.get(arg) || client.cmd.find((cmd) => cmd.aliases && cmd.aliases.includes(arg));
 
-      const command = client.cmd.get(arg) || client.cmd.find((cmd) => cmd.aliases && cmd.aliases.includes(arg));
+            if (!command) return M.reply('Command not found');
 
-      if (!command) return M.reply('Command not found');
+            const message = `👾 *Command:* ${command.name}\n📡 *Aliases:* ${command.aliases.join(', ')}\n🗂️ *Category:* ${command.category || 'None'}\n⏰ *Cooldown:* ${command.cooldown || 'None'}\n💡 *Usage:* ${client.prefix}${command.name}\n📝 *Description:* ${command.description}`;
 
-      const message = `👾 *Command:* ${command.name}\n📡 *Aliases:* ${command.aliases.join(', ')}\n🗂️ *Category:* ${command.category || 'None'}\n⏰ *Cooldown:* ${command.cooldown || 'None'}\n💡 *Usage:* ${client.prefix}${command.name}\n📝 *Description:* ${command.description}`;
-
-      M.reply(message);
-    } catch (err) {
-      await client.sendMessage(M.from, { image: { url: `${client.utils.errorChan()}` }, caption: `${client.utils.greetings()} Error-Chan Dis\n\nError:\n${err}` });
-    }
-
+            M.reply(message);
+         }catch(err){
+    await client.sendMessage(M.from , {image: {url: `${client.utils.errorChan()}`} , caption: `${client.utils.greetings()} Error-Chan Dis\n\nError:\n${err}`})
   }
-};
+          
+    }
+}
