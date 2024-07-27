@@ -1,6 +1,6 @@
 const moment = require("moment-timezone")
 
-module.exports = {
+ module.exports = {
     name: 'help',
     aliases: ['h', 'menu', 'list'],
     category: 'general',
