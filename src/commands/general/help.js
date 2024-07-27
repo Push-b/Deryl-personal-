@@ -53,16 +53,16 @@ if (hour >= 0 && hour < 12) {
        
         const categories = client.cmd.reduce((obj, cmd) => {
         const category = cmd.category || 'Uncategorized'
-       // if (category === 'general') return obj;
-     //   if (category === 'dev') return obj;
-     //   if (category === 'rpg') return obj;
-     //   if (category === 'media') return obj;
-     //   if (category === 'group') return obj;
-     //   if (category === 'utils') return obj;
-     //   if (category === 'fun') return obj;
-    //    if (category === 'economy') return obj;
-   //     if (category === 'card game') return obj;
-   //     if (category === 'pokemon') return obj;
+        if (category === 'general') return obj;
+        if (category === 'dev') return obj;
+        if (category === 'rpg') return obj;
+        if (category === 'media') return obj;
+        if (category === 'group') return obj;
+        if (category === 'utils') return obj;
+        if (category === 'fun') return obj;
+        if (category === 'economy') return obj;
+        if (category === 'card game') return obj;
+        if (category === 'pokemon') return obj;
         obj[category] = obj[category] || []
         obj[category].push(cmd.name)
         return obj
