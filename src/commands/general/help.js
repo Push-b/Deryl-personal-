@@ -1,3 +1,5 @@
+const moment = require("moment-timezone")
+
 module.exports = {
     name: 'help',
     aliases: ['h', 'menu', 'list'],
@@ -89,8 +91,13 @@ if (hour >= 0 && hour < 12) {
         
         
          const thumbnailUrl = getRandomThumbnailUrl();
+         const time = moment(moment())
+                    .format('HH:mm:ss')
+                moment.tz.setDefault('Asia/KOLKATA')
+                    .locale('id')
+                const date = moment.tz('Asia/Kolkata').format('DD/MM/YYYY')
 
- let message = `*╭───────────────╮*\n*│ ɴᴀᴍᴇ: Kurumi Tokisaki*\n*│ ᴜsᴇʀ:* @${pushName}\n*│ ᴘʀᴇғɪx: << ${client.prefix} >>*\n*│ ᴏᴡɴᴇʀ: ${client.owner}*\n*╰───────────────╯*\n\nThis help menu is designed to help you get started with the bot.\n\n⟾ *📪Command List📪*\n\n${commands}\n📚*Notes:*\n*➪Use ${client.prefix}help <command_name> for more info of a specific command.*\n*➪ Example: ${client.prefix}help bank.*`;
+ let message = `*╭───────────────╮*\n*│ ɴᴀᴍᴇ: Kurumi Tokisaki*\n*│ ᴜsᴇʀ:* @${pushName}\n*│ ᴘʀᴇғɪx: << ${client.prefix} >>*\n*│ ᴏᴡɴᴇʀ: ${client.owner}*\n*│ Time: ${time}*\n*│ Date: ${date}*╰───────────────╯*\n\nThis help menu is designed to help you get started with the bot.\n\n⟾ *📪Command List📪*\n\n${commands}\n📚*Notes:*\n*➪Use ${client.prefix}help <command_name> for more info of a specific command.*\n*➪ Example: ${client.prefix}help bank.*`;
    
        const buffer = await client.utils.getBuffer('https://i.imgur.com/ZgrSw7W.jpg')
       await client.sendMessage(
