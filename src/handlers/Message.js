@@ -126,17 +126,7 @@ module.exports = MessageHandler = async (messages, client) => {
       let txtt = `*${client.prefix}${cmdName}* is an ⛔ invalid command`;
      await client.sendMessage(M.from, {image: { url: rae }, caption: txtt}, { quoted: M });
        }
-   if (command.react) {
-            const reactionMessage = {
-                react: {
-                    text: command.react, // use an empty string to remove the reaction
-                    key: M.key
-                }
-            };
-            await client.sendMessage(M.from, reactionMessage);
-        }
-
-        // command cooldown
+     // command cooldown
         const cooldownAmount = (command.cool ?? 1) * 1000;
         const time = cooldownAmount + Date.now();
         const senderIsMod = client.mods.includes(sender.split('@')[0]);
