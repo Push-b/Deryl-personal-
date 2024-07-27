@@ -124,11 +124,9 @@ module.exports = MessageHandler = async (messages, client) => {
         if (body.startsWith(client.prefix) && !isCmd) {
       var rae = `https://telegra.ph/file/75368c6fe4abb9d0f2bb9.png`;
       let txtt = `*${client.prefix}${cmdName}* is an ⛔ invalid command`;
-      client.sendMessage(M.from, {image: { url: rae }, caption: txtt}, { quoted: M });
-    }
-
-
-        if (command.react) {
+     await client.sendMessage(M.from, {image: { url: rae }, caption: txtt}, { quoted: M });
+       }
+   if (command.react) {
             const reactionMessage = {
                 react: {
                     text: command.react, // use an empty string to remove the reaction
