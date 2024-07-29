@@ -76,6 +76,6 @@
       "wa-sticker-formatter": "^4.4.4",
       "welcomer-gif": "^2.0.0",
       "youtube-yts": "^2.0.0",
-      "youtubedl-core": "^4.11.5"
+      "youtubedl-core": "^6.0.2"
    }
 }
