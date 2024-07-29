@@ -7108,8 +7108,8 @@ youtube-yts@^2.0.0:
     minimist "~1.2.5"
     node-fzf "~0.5.1"
 
-youtubedl-core@^4.11.4, youtubedl-core@^4.11.5:
-  version "4.11.5"
+youtubedl-core@^6.0.2, youtubedl-core@^6.0.2:
+  version "6.0.2"
   resolved "https://registry.yarnpkg.com/youtubedl-core/-/youtubedl-core-4.11.5.tgz#510fbb2d9b298df0c070d629d2d040e33b70d020"
   integrity sha512-v2clCKsnTKCKkQ/vonXvYD350voZH2jXYjd/DywJ3dPmsCNYkty2YBp7hyNXoeTxNJcVPGvuMymbgM/08UDy+Q==
   dependencies:
