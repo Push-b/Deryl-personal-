@@ -22,8 +22,6 @@ module.exports = {
             const term = validPathDomains.test(arg) ? arg.trim() : linkData?.url;
             if (!term) return M.reply('Please use this command with a valid YouTube content link');
 
-            if (!validPathDomains.test(term.trim())) return M.reply('Please use this command with a valid YouTube link');
-
             M.reply(`Downloading: ${linkData?.title}`);
 
             // Checking if the video is longer than 30 minutes
