@@ -22,7 +22,6 @@ module.exports = {
          M.reply(`Downloading video of: ${linkData?.title}`)
         if (Number(linkData.lengthSeconds) > 1800) return M.reply('Cannot download video longer than 30 minutes')
         const audioBuffer = await YT(term, 'video');
-            .then(async (res) => {
                 await client.sendMessage(
                     M.from,
                     {
