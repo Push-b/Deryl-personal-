@@ -33,4 +33,4 @@ const YT2 =  async (url,type = "audio") => {
   }
 };
 
-export default YT2;
+module.exports = YT2;
