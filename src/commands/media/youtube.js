@@ -31,7 +31,7 @@ module.exports = {
                    },
                 {
                     quoted: M
-                }
+                })
                     }
         } catch (error) {
             console.error(error);
