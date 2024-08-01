@@ -33,7 +33,8 @@ module.exports = {
                     quoted: M
                 }
             );
-        } catch (error) {
+       }
+         } catch (error) {
             console.error(error);
             M.reply('An error occurred while downloading the YouTube video audio.');
         }
