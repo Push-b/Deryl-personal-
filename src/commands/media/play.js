@@ -1,4 +1,4 @@
-const YT = require('../../lib/YT');
+const YT = require('../../lib/YT2');
 const yts = require('yt-search');
 
 module.exports = {
@@ -32,7 +32,7 @@ module.exports = {
             if (Number(videoDetails.lengthSeconds) > 1800) return M.reply('Cannot download audio longer than 30 minutes');
 
             // Downloading and sending the audio
-            const audioBuffer = await YT.getBuffer(term, 'audio');
+            const audioBuffer = await YT(term, 'audio');
             await client.sendMessage(
                 M.from,
                 {

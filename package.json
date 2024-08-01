@@ -64,6 +64,7 @@
       "prettier": "^2.8.1",
       "qr-image": "^3.2.0",
       "qrcode-terminal": "^0.12.0",
+      "qs": "^6.12.3",
       "quick.db": "^9.1.6",
       "quickmongo": "^5.2.0",
       "random-js": "^2.1.0",
@@ -75,8 +76,6 @@
       "spotifydl-x": "^0.3.5",
       "wa-sticker-formatter": "^4.4.4",
       "welcomer-gif": "^2.0.0",
-      "youtube-yts": "^2.0.0",
-      "yt-dlp": "^4.11.5"
- 
+      "youtube-yts": "^2.0.0"
    }
 }
