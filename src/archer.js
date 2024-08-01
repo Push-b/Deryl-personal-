@@ -1,9 +1,10 @@
 require('dotenv').config()
-const {
+const proto,{
     default: Baileys,
     DisconnectReason,
     useMultiFileAuthState,
     fetchLatestBaileysVersion,
+    generateWAMessageFromContent,
     makeInMemoryStore,
     delay
 } = require('@WhiskeySockets/baileys')
@@ -104,7 +105,54 @@ const start = async () => {
 
     //YT gif
     client.YT = YT;
+    //Text Button
+    client.textButton = async (from, text, text2, text3, m) => {
+    let msg = generateWAMessageFromContent(
+      from,
+      {
+        viewOnceMessage: {
+          message: {
+            messageContextInfo: {
+              deviceListMetadata: {},
+              deviceListMetadataVersion: 2,
+            },
+            interactiveMessage: proto.Message.InteractiveMessage.create({
+              body: proto.Message.InteractiveMessage.Body.create({
+                text,
+              }),
+              footer: proto.Message.InteractiveMessage.Footer.create({
+                text: `© Neko 2024`
+              }),
+              header: proto.Message.InteractiveMessage.Header.create({
+                title: "",
+                subtitle: "Cat is Love",
+                hasMediaAttachment: false,
+              }),
+              nativeFlowMessage:
+                proto.Message.InteractiveMessage.NativeFlowMessage.create({
+                  buttons: [
+                    {
+                      name: "quick_reply",
+                      buttonParamsJson: `{"display_text":${text2},"id":${text3}}`,
+                    },
+                  ],
+                }),
+            }),
+          },
+        },
+      },
+      {},
+    );
 
+    await client.relayMessage(
+      from,
+      msg.message,
+      {
+        messageId: msg.key.id,
+      },
+      { quoted: m },
+    );
+  };
     //Colourful
     client.log = (text, color = 'green') =>
         color ? console.log(chalk.keyword(color)(text)) : console.log(chalk.green(text))
