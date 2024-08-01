@@ -1,4 +1,4 @@
-const YT = require('../../lib/YT')
+const YT = require('../../lib/YT2');
 const yts = require("youtube-yts");
 
 module.exports = {
@@ -15,21 +15,21 @@ module.exports = {
             return videos[0].url
         }
         if (!arg) return M.reply('Please use this command with a valid youtube.com link')
+         const linkData = await link(arg);
         const validPathDomains = /^https?:\/\/(youtu\.be\/|(www\.)?youtube\.com\/(embed|v|shorts)\/)/
         const term = validPathDomains.test(arg) ? arg.trim() : await link(arg)
         if (!term) return M.reply('Please use this command with a valid youtube content link')
-        if (!YT.validateURL(term.trim())) return M.reply('Please use this command with a valid youtube.com link')
-        const { videoDetails } = await YT.getInfo(term)
-        M.reply(`Downloading: ${videoDetails.title}`)
+      
+        M.reply(`Downloading: ${linkData?.title}`)
         if (Number(videoDetails.lengthSeconds) > 1800) return M.reply('Cannot download video longer than 30 minutes')
-        const audio = YT.getBuffer(term, 'video')
+         const audioBuffer = await YT(term, 'video');
             .then(async (res) => {
                 await client.sendMessage(
                     M.from,
                     {
                         video: res,
                         mimetype: 'video/mp4',
-                        fileName: videoDetails.title + '.mp4'
+                        fileName: `${linkData.title}.mp4`
                     },
                     {
                         quoted: M
