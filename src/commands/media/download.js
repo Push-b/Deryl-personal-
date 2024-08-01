@@ -1,5 +1,5 @@
 const axios = require('axios');
-const YT = require('../../lib/YT');
+const YT = require('../../lib/YT2');
 const yts = require("youtube-yts");
 
 module.exports = {
@@ -92,23 +92,5 @@ async function handleSpotifyDownload(client, url, M) {
     } catch (error) {
         console.error('Error fetching Spotify data:', error);
         await M.reply('❌ Error fetching Spotify data');
-    }
-}
-
-async function handleYoutubeVideoDownload(client, url, M) {
-    try {
-        const term = url;
-        const { videoDetails } = await YT.getInfo(term);
-        if (Number(videoDetails.lengthSeconds) > 1800) return M.reply('❌ Cannot download video longer than 30 minutes');
-        const videoBuffer = await YT.getBuffer(term, 'video');
-        await client.sendMessage(M.from, {
-            video: videoBuffer,
-            gifPlayback: true,
-            mimetype: 'audio/mp4',
-            caption: videoDetails.title
-        }, { quoted: M });
-    } catch (error) {
-        console.error('Error fetching YouTube data:', error);
-        await M.reply('❌ Error fetching YouTube data');
     }
 }
