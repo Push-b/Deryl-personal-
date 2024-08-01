@@ -2,8 +2,8 @@ const YT = require('../../lib/YT2');
 const yts = require('yt-search');
 
 module.exports = {
-    name: 'ytaudio',
-    aliases: ['yta', 'play'],
+    name: 'audio',
+    aliases: ['audio'],
     category: 'media',
     react: "✅",
     usage: 'Use :ytaudio <song_link>',
