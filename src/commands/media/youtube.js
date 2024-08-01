@@ -28,15 +28,14 @@ module.exports = {
                         video: res,
                         mimetype: 'video/mp4',
                         fileName: `${linkData.title}.mp4`
-                    },
-                    {
-                        quoted: M
-                    }
-                )
-            })
-            .catch((err) => {
-                return M.reply(err.toString())
-            })
+                     },
+                {
+                    quoted: M
+                }
+            );
+        } catch (error) {
+            console.error(error);
+            M.reply('An error occurred while downloading the YouTube video audio.');
+        }
     }
-}
-//M.quoted.mtype === 'imageMessage',
+};
