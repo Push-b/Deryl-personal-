@@ -34,7 +34,7 @@ module.exports = {
                 {
                     document: audioBuffer,
                     mimetype: 'audio/mpeg',
-                    fileName: `${videoDetails.title}.mp3`
+                    fileName: `${linkData.title}.mp3`
                 },
                 {
                     quoted: M
