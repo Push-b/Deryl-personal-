@@ -8,8 +8,7 @@ module.exports = {
     description: 'Downloads given YT Video',
     async execute(client, arg, M) {
 
-  
-        const link = async (term) => {
+      const link = async (term) => {
             const { videos } = await yts(term.trim())
             if (!videos || !videos.length) return null
             return videos[0].url
