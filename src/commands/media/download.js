@@ -1,6 +1,4 @@
 const axios = require('axios');
-const YT = require('../../lib/YT2');
-const yts = require("youtube-yts");
 
 module.exports = {
     name: 'download',
@@ -19,7 +17,6 @@ module.exports = {
             { regex: /instagram\.com\/(p|reel|tv)\//, handler: handleInstagramDownload },
             { regex: /^https:\/\/open\.spotify\.com\/track\/([a-zA-Z0-9]+)(\?.*)?$/, handler: handleSpotifyDownload },
             { regex: /tiktok\.com\//, handler: handleTikTokDownload },
-            { regex: /^https?:\/\/(youtu\.be\/|(www\.)?youtube\.com\/(embed|v|shorts)\/)/, handler: handleYoutubeVideoDownload },
         ];
 
         const matchedHandler = handlers.find(({ regex }) => {
