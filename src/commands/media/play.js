@@ -13,23 +13,21 @@ module.exports = {
             const link = async (term) => {
                 const { videos } = await yts(term.trim());
                 if (!videos || !videos.length) return null;
-                return videos[0].url;
+                return videos[0];
             };
 
             if (!arg) return M.reply('Please use this command with a valid YouTube link');
-
+            const linkData = await link(arg);
             const validPathDomains = /^https?:\/\/(youtu\.be\/|(www\.)?youtube\.com\/(embed|v|shorts)\/)/;
-            const term = validPathDomains.test(arg) ? arg.trim() : await link(arg);
+            const term = validPathDomains.test(arg) ? arg.trim() : linkData?.url;
             if (!term) return M.reply('Please use this command with a valid YouTube content link');
 
-            if (!YT.validateURL(term.trim())) return M.reply('Please use this command with a valid YouTube link');
+            if (!validPathDomains.test(term.trim())) return M.reply('Please use this command with a valid YouTube link');
 
-            const { videoDetails } = await YT.getInfo(term);
-
-            M.reply(`Downloading: ${videoDetails.title}`);
+            M.reply(`Downloading: ${linkData?.title}`);
 
             // Checking if the video is longer than 30 minutes
-            if (Number(videoDetails.lengthSeconds) > 1800) return M.reply('Cannot download audio longer than 30 minutes');
+            if (Number(linkData.seconds) > 1800) return M.reply('Cannot download audio longer than 30 minutes');
 
             // Downloading and sending the audio
             const audioBuffer = await YT(term, 'audio');
