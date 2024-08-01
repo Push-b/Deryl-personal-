@@ -1,4 +1,4 @@
-const ytdl = require('youtubedl-core')
+const ytdl = require('yt-dlp')
 const { validateURL, getInfo } = require('yt-dlp')
 const { createWriteStream, readFile } = require('fs-extra')
 const { tmpdir } = require('os')
