@@ -19,7 +19,6 @@ module.exports = {
         const validPathDomains = /^https?:\/\/(youtu\.be\/|(www\.)?youtube\.com\/(embed|v|shorts)\/)/
         const term = validPathDomains.test(arg) ? arg.trim() : await link(arg)
         if (!term) return M.reply('Please use this command with a valid youtube content link')
-        if (!YT.validateURL(term.trim())) return M.reply('Please use this command with a valid youtube.com link')
          M.reply(`Downloading: ${limkData?.title}`)
         if (Number(linkData.lengthSeconds) > 1800) return M.reply('Cannot download video longer than 30 minutes')
         const audio = YT.getBuffer(term, 'video')
